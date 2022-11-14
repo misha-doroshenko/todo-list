@@ -1,0 +1,15 @@
+body {
+  margin-top: 30px;
+}
+
+.done {
+  color: green;
+}
+
+.not-done {
+  color: red;
+}
+
+.deadline{
+  color: darkred;
+}
