@@ -10,5 +10,6 @@
     {{ form.media }}
     {{ form.as_p }}
     <input type="submit" value="Submit" class="btn btn-primary">
+    <a class="btn btn-danger" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
   </form>
 {% endblock %}

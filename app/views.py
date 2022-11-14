@@ -4,13 +4,14 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from app.forms import TaskForm
+from app.forms import TaskForm, TagForm
 from app.models import Task, Tag
 
 
 class TaskListView(generic.ListView):
     model = Task
     queryset = Task.objects.prefetch_related("tags").all()
+    paginate_by = 4
 
 
 class TaskUpdateView(generic.UpdateView):
@@ -37,3 +38,21 @@ def complete_undo(request, pk):
 
 class TagListView(generic.ListView):
     model = Tag
+    paginate_by = 4
+
+
+class TagUpdateView(generic.UpdateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("app:tag-list")
+
+
+class TagCreateView(generic.CreateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("app:tag-list")
+
+
+class TagDeleteView(generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("app:tag-list")
